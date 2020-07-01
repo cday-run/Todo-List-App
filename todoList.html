@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+		<title>Practical Javascript</title>
+		<link rel="stylesheet" href="styles.css">
+		<!-- Import font awesome icon library -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+
+	<body onload="view.loadTodos(), view.displayDate()">
+		<div class="container-lg">
+			<div class="container-header">
+				<p id="date"></p>
+				<button class="toggle-all-btn" onclick="handlers.toggleAll()"><i class="fa fa-ellipsis-h"></i></button>
+				<button class="clear-btn" onclick="handlers.clearAll()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+			</div>
+			<!--Eventually add ability to change todo item -->
+<!-- 			<div>
+				<button onclick="handlers.changeTodo()">Change Todo</button>
+				<input id="changeTodoPositionInput" type="number">
+				<input id="changeTodoTextInput" type="text">
+			</div> -->
+			<div class="container-content">
+				<ul>
+
+				</ul>
+			</div>
+			<div class="container-addtodo">
+				<button class="add-btn" onclick="handlers.addTodo()"><i class="fa fa-plus-square"></i></button>
+				<input id="addTodoTextInput" class="addTodoInput" type="text">
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			var data = localStorage.getItem('TODO');
+			var todoList = {
+				//todos: [],
+				todos:
+					data ? JSON.parse(data) : []
+				,
+
+				addTodo: function(todoText) {
+					this.todos.push({
+						todoText: todoText,
+						completed: false
+					});
+					localStorage.setItem('TODO', JSON.stringify(this.todos));
+				},
+
+				changeTodo: function(position, todoText) {
+					this.todos[position].todoText = todoText;
+					localStorage.setItem("TODO", JSON.stringify(this.todos));
+				},
+
+				deleteTodo: function(position) {
+					this.todos.splice(position, 1);
+					localStorage.setItem("TODO", JSON.stringify(this.todos));
+				},
+
+				clearAll: function() {
+					localStorage.clear();
+					location.reload();
+				},
+
+				toggleCompleted: function(position) {
+					var todo = this.todos[position];
+					todo.completed = !todo.completed;
+					localStorage.setItem("TODO", JSON.stringify(this.todos));
+				},
+
+				toggleAll: function() {
+					var totalTodos = this.todos.length;
+					var completedTodos = 0;
+					//Get number of completed todos
+					this.todos.forEach(function(todo) {
+						if (todo.completed === true) {
+							completedTodos++;
+						}
+					});
+
+					this.todos.forEach(function(todo) {
+						//If everything is true, make everythin false
+						if (completedTodos === totalTodos){
+							todo.completed = false;
+						}
+						//Otherwise make everything true
+						else {
+							todo.completed = true;
+						}
+					});
+					localStorage.setItem("TODO", JSON.stringify(this.todos));
+				}
+			};
+
+			//create event handler object
+			var handlers = {
+				addTodo: function() {
+					var addTodoTextInput = document.getElementById('addTodoTextInput');
+					todoList.addTodo(addTodoTextInput.value);
+					addTodoTextInput.value = '';
+					view.displayTodos();
+				},
+
+				changeTodo: function() {
+					var changeTodoPositionInput = document.getElementById('changeTodoPositionInput');
+					var changeTodoTextInput = document.getElementById('changeTodoTextInput');
+					todoList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);
+					changeTodoPositionInput.value = '';
+					changeTodoTextInput.value = '';
+					view.displayTodos();
+				},
+
+				deleteTodo: function(position) {
+					todoList.deleteTodo(position);
+					view.displayTodos();
+				},
+
+				clearAll: function() {
+					todoList.clearAll();
+					view.displayTodos();
+				},
+
+				toggleCompleted: function(position) {
+					todoList.toggleCompleted(position);
+					view.displayTodos();
+				},
+
+				toggleAll: function() {
+					todoList.toggleAll();
+					view.displayTodos();
+				}
+			};
+
+			//create a views object
+			var view = {
+				loadTodos: function() {
+					var todosUl = document.querySelector('ul');	
+					todosUl.innerHTML = '';
+					todoList.todos.forEach(function(todo, position) {
+						var todoLi = document.createElement('li');
+						var todoTextWithCompletion = '';
+
+						if(todo.completed === true) {
+							todoTextWithCompletion = todo.todoText;
+							todoLi.id = position;
+							todoLi.textContent = todoTextWithCompletion;
+							todoLi.insertBefore(this.createChecked(), todoLi.childNodes[0]);
+							todoLi.appendChild(this.createRemoveCheckToggle());
+							todoLi.appendChild(this.createDeleteButton());
+							todosUl.appendChild(todoLi);
+						}
+						else {
+							todoTextWithCompletion = todo.todoText;
+							todoLi.id = position;
+							todoLi.textContent = todoTextWithCompletion;
+							todoLi.appendChild(this.createToggleButton());
+							todoLi.appendChild(this.createDeleteButton());
+							todosUl.appendChild(todoLi);
+						}
+
+				}, this);
+				},
+				displayTodos: function() {
+					var todosUl = document.querySelector('ul');
+					todosUl.innerHTML = '';
+					todoList.todos.forEach(function(todo, position) {
+						var todoLi = document.createElement('li');
+						var todoTextWithCompletion = '';
+
+						if(todo.completed === true) {
+							todoTextWithCompletion = todo.todoText;
+							todoLi.id = position;
+							todoLi.textContent = todoTextWithCompletion;
+							todoLi.insertBefore(this.createChecked(), todoLi.childNodes[0]);
+							todoLi.appendChild(this.createRemoveCheckToggle());
+							todoLi.appendChild(this.createDeleteButton());
+							todosUl.appendChild(todoLi);
+						}
+						else {
+							todoTextWithCompletion = todo.todoText;
+							todoLi.id = position;
+							todoLi.textContent = todoTextWithCompletion;
+							todoLi.appendChild(this.createToggleButton());
+							todoLi.appendChild(this.createDeleteButton());
+							todosUl.appendChild(todoLi);
+						}
+
+					}, this);
+				},
+				createDeleteButton: function() {
+					var deleteButton = document.createElement('button');
+					var icon = document.createElement('i');
+					icon.className = 'fa fa-trash';
+					deleteButton.appendChild(icon);
+					deleteButton.className = 'deleteButton';
+					return deleteButton;
+				},
+				createToggleButton: function() {
+					var toggleButton = document.createElement('i');
+					toggleButton.className = 'fa fa-check';
+					return toggleButton;
+				},
+				createChecked: function() {
+					var checkedIcon = document.createElement('span');
+					var icon = document.createElement('i');
+					icon.className = 'fa fa-check-circle';
+					checkedIcon.appendChild(icon);
+					checkedIcon.className = 'checkedIcon';
+					return checkedIcon;
+				},
+				//Make toggle button appear as cross when completed = true
+				createRemoveCheckToggle: function() {
+					var toggleButton = document.createElement('i');
+					toggleButton.className = 'fa fa-times';
+					return toggleButton;
+				},
+				//Show the current date
+				displayDate: function() {
+					var dateElement = document.getElementById('date');
+					var options = {weekday:'long', month:'short', day:'numeric'};
+					var today = new Date();
+					dateElement.innerHTML = today.toLocaleDateString('en-US', options);
+
+				},
+				setupEventListeners: function() {
+					var todosUl = document.querySelector('ul');
+					todosUl.addEventListener('click', function(event) {
+						//Get element that was clicked
+						var elementClicked = event.target;
+						//Check if element clicked is a delete button
+						if (elementClicked.className === 'deleteButton' || elementClicked.className === 'fa fa-trash') {
+							handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
+						}
+						//Check if element was toggle button
+						if (elementClicked.className === 'fa fa-times' || elementClicked.className === 'fa fa-check') {
+							handlers.toggleCompleted(parseInt(elementClicked.parentNode.id));
+						}
+
+					});
+					document.addEventListener('keyup', function(event) {
+						//Check that eneter key was hit
+						if(event.keyCode === 13 && document.getElementById('addTodoTextInput').value !== '') {
+							handlers.addTodo();
+						}
+					});
+				}
+			};
+
+			view.setupEventListeners();
+		</script>
+	</body>
+</html>

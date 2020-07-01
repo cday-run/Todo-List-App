@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+
+*
+{
+	font-family: 'Ubuntu Mono', monospace;
+}
+
+body
+{
+	width: 100%;
+	background-color: #1b1e23;
+	margin: auto;
+	padding-top: 5%;
+}
+
+/*elements container*/
+.container-lg
+{
+	width: 60vw;
+	min-height: 80vh;
+	margin: auto;
+	border: 2px solid #FFF;
+	border-radius: 15px;
+	position: relative;
+	background-color: #3e3e3e;
+}
+
+/*header content div*/
+.container-header
+{
+	width: 100%;
+	height: 20vh;
+	background-image: url('background-picture.jpg'); 
+	background-size: 100% 200%;
+	background-repeat: no-repeat;
+	border-radius: 15px 15px 0 0;
+	position: relative;
+}
+
+.clear-btn
+{
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	background: none;
+	border: none;
+}
+
+.clear-btn i
+{
+	font-size: 30px;
+	color: #1b1e23;
+}
+
+.clear-btn i:hover
+{
+	cursor: pointer;
+	text-shadow: 1px 3px 5px #000;
+	transform: rotate(35deg);
+}
+
+.toggle-all-btn
+{
+	position: absolute;
+	right: 20px;
+	bottom: 5px;
+	background: none;
+	border: none;
+}
+
+.toggle-all-btn i
+{
+	font-size: 30px;
+	color: #1b1e23;
+}
+
+.toggle-all-btn i:hover
+{
+	cursor: pointer;
+	text-shadow: 1px 3px 5px #000;
+}
+
+#date
+{
+	position: relative;
+    left: 10px;
+    padding-top: 5px;
+    color: #1b1e23;
+    font-size: 40px;
+    margin: 0;
+}
+
+/*content div*/
+.container-content
+{
+	width: 60vw;
+	height: 40vh;
+	max-height: 40vh;
+	background-color: #3e3e3e;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	overflow: auto;
+}
+
+.container-content::-webkit-scrollbar
+{
+	display: none;
+}
+
+.container-content ul
+{
+	padding: 0;
+	margin: 0;
+}
+
+.container-content li
+{
+	max-width: 80%;
+	min-height: 45px;
+	position: relative;
+	border-top: 1px solid #FFF;
+	list-style: none;
+	padding: 0;
+	margin: auto;
+	line-height: 40px;
+	font-size: 30px;
+	text-align: left;
+	color: #FFF;
+	overflow: visible;
+}
+
+.checkedIcon
+{
+	font-size: 30px;
+	color: #39ff14;
+	padding-right: 5px;
+}
+
+
+.deleteButton
+{
+	float: right;
+	position: relative;
+	right: -15%;
+	top: 8px;
+	background: none;
+	border: none;
+}
+
+.deleteButton i
+{
+	font-size: 30px;
+	color: #FFF;
+}
+
+.deleteButton i:hover
+{
+	cursor: pointer;
+	text-shadow: 1px 3px 5px #000;
+}
+
+.fa-times
+{
+	float: right;
+	position: relative;
+	font-size: 25px;
+	right: 5%;
+	top: 8px;
+	font-size: 30px;
+	color: #FFF;
+}
+
+.fa-times:hover
+{
+	cursor: pointer;
+	text-shadow: 1px 3px 5px #000;
+}
+
+.fa-check
+{
+	float: right;
+	position: relative;
+	font-size: 25px;
+	right: 5%;
+	top: 8px;
+	font-size: 30px;
+	color: #FFF;
+}
+
+.fa-check:hover
+{
+	cursor: pointer;
+	text-shadow: 1px 3px 5px #000;
+}
+
+.container-addtodo
+{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding: 5px;
+}
+
+.add-btn
+{
+	width: 10%;
+	height: 50px;
+	border: none;
+	background: none;
+	margin-right: 8px;
+}
+
+.add-btn i
+{
+	font-size: 50px;
+	color: #00FFFF;
+	margin: 0;
+}
+
+.add-btn i:hover
+{
+	cursor: pointer;
+	text-shadow: 1px 3px 5px #000;
+}
+
+.addTodoInput
+{
+	max-width: 80%;
+	height: 20px;
+	line-height: 35px;
+	background: none;
+	border: none;
+	border-bottom: 1px solid #FFF;
+	position: relative;
+	padding: 5px;
+	font-size: 40px;
+	color: #FFF;
+}
+
+
+/* scale for mobile*/
+@media (max-width: 600px)
+{
+	body
+	{
+		padding-top: 5%;
+	}
+	.container-lg
+	{
+		width: 95vw;
+		min-height: 95vh;
+		margin: auto;
+		border: 2px solid #FFF;
+		border-radius: 15px;
+		position: relative;
+		background-color: #3e3e3e;
+	}
+	#date
+	{
+		font-size: 32px;
+	}
+	.add-btn
+	{
+		width: 8%;
+		height: 40px;
+	}
+
+	.add-btn i
+	{
+		font-size: 40px;
+	}
+	.addTodoInput
+	{
+		height: 20px;
+		line-height: 20px;
+		font-size: 30px;
+	}
+		.container-content
+	{
+		width: 100%;
+		height: 40vh;
+		max-height: 40vh;
+		background-color: #3e3e3e;
+		padding-top: 5%;
+		padding-bottom: 5%;
+		overflow: auto;
+	}
+	.container-content li
+	{
+		min-height: 30px;
+		position: relative;
+		border-top: 1px solid #FFF;
+		list-style: none;
+		padding: 0;
+		margin: auto;
+		line-height: 30px;
+		font-size: 20px;
+		text-align: left;
+		color: #FFF;
+		overflow: visible;
+	}
+	.deleteButton
+	{
+		float: right;
+		position: relative;
+		right: -15%;
+		top: 5px;
+		background: none;
+		border: none;
+	}
+
+	.deleteButton i
+	{
+		font-size: 20px;
+		color: #FFF;
+	}
+
+	.fa-times
+	{
+		float: right;
+		position: relative;
+		right: 5%;
+		top: 5px;
+		font-size: 20px;
+		color: #FFF;
+	}
+
+	.fa-check
+	{
+		float: right;
+		position: relative;
+		right: 5%;
+		top: 5px;
+		font-size: 20px;
+		color: #FFF;
+	}
+
+	.checkedIcon
+	{
+		font-size: 20px;
+		color: #39ff14;
+		padding-right: 5px;
+	}
+}
