@@ -225,7 +225,7 @@ body
 
 .addTodoInput
 {
-	max-width: 80%;
+	width: 80%;
 	height: 20px;
 	line-height: 35px;
 	background: none;
