@@ -141,7 +141,7 @@ body
 {
 	float: right;
 	position: relative;
-	right: -15%;
+	right: -10%;
 	top: 8px;
 	background: none;
 	border: none;
@@ -164,7 +164,7 @@ body
 	float: right;
 	position: relative;
 	font-size: 25px;
-	right: 5%;
+	right: 2%;
 	top: 8px;
 	font-size: 30px;
 	color: #FFF;
@@ -181,7 +181,7 @@ body
 	float: right;
 	position: relative;
 	font-size: 25px;
-	right: 5%;
+	right: 2%;
 	top: 8px;
 	font-size: 30px;
 	color: #FFF;
@@ -239,7 +239,7 @@ body
 
 
 /* scale for mobile*/
-@media (max-width: 600px)
+@media (max-width: 900px)
 {
 	body
 	{
@@ -275,7 +275,7 @@ body
 		line-height: 20px;
 		font-size: 30px;
 	}
-		.container-content
+	.container-content
 	{
 		width: 100%;
 		height: 40vh;
@@ -303,7 +303,7 @@ body
 	{
 		float: right;
 		position: relative;
-		right: -15%;
+		right: -10%;
 		top: 5px;
 		background: none;
 		border: none;
@@ -319,7 +319,7 @@ body
 	{
 		float: right;
 		position: relative;
-		right: 5%;
+		right: 2%;
 		top: 5px;
 		font-size: 20px;
 		color: #FFF;
@@ -329,7 +329,7 @@ body
 	{
 		float: right;
 		position: relative;
-		right: 5%;
+		right: 2%;
 		top: 5px;
 		font-size: 20px;
 		color: #FFF;
